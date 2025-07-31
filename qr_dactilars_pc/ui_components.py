@@ -7,6 +7,7 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import os
 
 
 class FormComponents:
@@ -100,14 +101,17 @@ class FormComponents:
 
 
 class MenuComponents:
+    
     """Clase con componentes específicos del menú"""
     
     @staticmethod
     def create_main_title(parent):
+        icon_path = os.path.join(os.path.dirname(__file__), "icons", "codigo-qr.ico")
+
         """Crea el título principal de la aplicación"""
         title = ctk.CTkLabel(
             parent,
-            text="🎯 Generador de Códigos QR",
+            text= " Generador de Códigos QR",
             font=ctk.CTkFont(size=32, weight="bold")
         )
         title.pack(pady=(30, 40))
