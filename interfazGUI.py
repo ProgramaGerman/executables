@@ -1,13 +1,11 @@
 """Interfaz para la conversión de imágenes a formato WebP, usando tecnología CustomTkinter"""
 
 import customtkinter as ctk
-import tkinter as tk
 from tkinter import filedialog
-from converter_img_webp import convert_folder_images_to_webp
 import tkinter.messagebox as messagebox
 from PIL import Image
-
-
+import threading
+import pathlib
 
 class ImageConverterApp(ctk.CTk):
     def __init__(self):
@@ -75,72 +73,98 @@ class ImageConverterApp(ctk.CTk):
             self.output_entry.insert(0, folder_selected)
 
     def convert_images(self):
-        """Convierte las imágenes de la carpeta de entrada a formato WebP y las guarda en la carpeta de salida."""
+        """Valida las entradas e inicia el proceso de conversión en un hilo separado para no bloquear la GUI."""
         input_folder = self.input_entry.get()
         output_folder = self.output_entry.get()
+
+        if not input_folder or not output_folder:
+            messagebox.showerror("Error", "Por favor, seleccione ambas carpetas.")
+            return
 
         self.convert_button.configure(state="disabled")
         self.status_label.configure(text="Procesando...", text_color="blue")
 
-        if not input_folder or not output_folder:
-            self.status_label.configure(
-                text="Por favor, seleccione ambas carpetas.", text_color="red"
-            )
-            messagebox.showerror("Error", "Por favor, seleccione ambas carpetas.")
-            self.convert_button.configure(state="normal")
-            return
+        # Ejecutar la conversión en un hilo separado para no congelar la interfaz
+        conversion_thread = threading.Thread(
+            target=self._run_conversion_task,
+            args=(input_folder, output_folder),
+            daemon=True,
+        )
+        conversion_thread.start()
 
-        import pathlib
+    def _run_conversion_task(self, input_folder, output_folder):
+        """
+        Busca y convierte imágenes. Esta función está diseñada para ejecutarse en un hilo de fondo.
+        """
+        try:
+            valid_exts = [".jpg", ".jpeg", ".png", ".bmp", ".gif"]
+            input_path = pathlib.Path(input_folder)
+            image_files = [
+                f
+                for f in input_path.rglob("*")
+                if f.suffix.lower() in valid_exts and f.is_file()
+            ]
 
-        valid_exts = [".jpg", ".jpeg", ".png", ".bmp", ".gif"]
-        input_path = pathlib.Path(input_folder)
-        image_files = [
-            f
-            for f in input_path.rglob("*")
-            if f.suffix.lower() in valid_exts and f.is_file()
-        ]
+            if not image_files:
+                self.after(
+                    0,
+                    self._update_ui_after_conversion,
+                    "No se encontraron imágenes válidas en la carpeta seleccionada.",
+                    "orange",
+                    "warning",
+                )
+                return
 
-        if not image_files:
-            self.status_label.configure(
-                text="No se encontraron imágenes válidas en la carpeta seleccionada.",
-                text_color="orange",
-            )
-            messagebox.showwarning(
-                "Sin imágenes",
-                "No se encontraron imágenes válidas en la carpeta seleccionada.",
-            )
-            self.convert_button.configure(state="normal")
-            return
+            output_path = pathlib.Path(output_folder)
+            output_path.mkdir(parents=True, exist_ok=True)
 
+            convertidos = 0
+            errores = 0
+            for image_file in image_files:
+                output_file = output_path / (image_file.stem + ".webp")
+                try:
+                    with Image.open(image_file) as img:
+                        img.save(output_file, "WEBP")
+                    convertidos += 1
+                except Exception as e:
+                    print(f"Error al convertir {image_file.name}: {e}")
+                    errores += 1
 
-        output_path = pathlib.Path(output_folder)
-        if not output_path.exists():
-            output_path.mkdir(parents=True)
-        convertidos = 0
-        errores = 0
-        for image_file in image_files:
-            output_file = output_path / (image_file.stem + ".webp")
-            try:
-                with Image.open(image_file) as img:
-                    img.save(output_file, "WEBP")
-                convertidos += 1
-            except Exception as e:
-                errores += 1
-        if convertidos > 0:
-            msg = (
-                f"{convertidos} imagen(es) convertidas y guardadas en {output_folder}."
+            if convertidos > 0:
+                msg = f"{convertidos} imagen(es) convertidas y guardadas."
+                if errores > 0:
+                    msg += f"\n{errores} imagen(es) no se pudieron convertir."
+                self.after(0, self._update_ui_after_conversion, msg, "green", "info")
+            else:
+                msg = "No se pudo convertir ninguna imagen."
+                if errores > 0:
+                    msg += f"\nOcurrieron {errores} errores durante el proceso."
+                self.after(0, self._update_ui_after_conversion, msg, "red", "error")
+
+        except Exception as e:
+            print(f"Error inesperado en el hilo de conversión: {e}")
+            self.after(
+                0,
+                self._update_ui_after_conversion,
+                f"Ocurrió un error inesperado: {e}",
+                "red",
+                "error",
             )
-            if errores > 0:
-                msg += f"\n{errores} imagen(es) no se pudieron convertir."
-            self.status_label.configure(text=msg, text_color="green")
-            messagebox.showinfo("Conversión completada", msg)
-        else:
-            self.status_label.configure(
-                text="No se pudo convertir ninguna imagen.", text_color="red"
-            )
-            messagebox.showerror("Error", "No se pudo convertir ninguna imagen.")
+
+    def _update_ui_after_conversion(self, message, color, message_type):
+        """
+        Actualiza la etiqueta de estado y muestra un cuadro de mensaje.
+        Se llama desde el hilo principal usando `self.after`.
+        """
+        self.status_label.configure(text=message, text_color=color)
         self.convert_button.configure(state="normal")
 
+        if message_type == "info":
+            messagebox.showinfo("Conversión Completada", message)
+        elif message_type == "warning":
+            messagebox.showwarning("Atención", message)
+        elif message_type == "error":
+            messagebox.showerror("Error", message)
 
 if __name__ == "__main__":
     app = ImageConverterApp()
