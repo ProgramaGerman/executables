@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import filedialog
 from converter_img_webp import convert_folder_images_to_webp
 import tkinter.messagebox as messagebox
+from PIL import Image
+
 
 
 class ImageConverterApp(ctk.CTk):
@@ -110,7 +112,6 @@ class ImageConverterApp(ctk.CTk):
             self.convert_button.configure(state="normal")
             return
 
-        from PIL import Image
 
         output_path = pathlib.Path(output_folder)
         if not output_path.exists():
