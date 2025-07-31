@@ -312,17 +312,9 @@ Este proyecto está bajo la **Licencia MIT**, lo que significa que puedes:
 
 ### **Información del Desarrollador**
 - 👨‍💻 **Desarrollador**: @GermanGonzalez
-- 📧 **Email**: [tu-email@ejemplo.com]
-- 🐙 **GitHub**: [tu-perfil-github]
-- 💼 **LinkedIn**: [tu-perfil-linkedin]
-
-### **Canales de Soporte**
-- 🐛 **Issues**: Para reportar bugs y solicitar features
-- 💬 **Discussions**: Para preguntas generales y feedback
-- 📧 **Email**: Para consultas privadas o colaboraciones
-- 🌐 **Wiki**: Para documentación extendida
-
----
+- 📧 **Email**: [gownman2004@gmail.com]
+- 🐙 **GitHub**: [ProgramaGerman]
+- 💼 **LinkedIn**: (https://www.linkedin.com/in/german-gonzalez-11715336b/)
 
 ## 🎯 Mensaje Final
 
@@ -345,8 +337,4 @@ Si te gusta lo que ves, **no dudes en contribuir**. Ya sea con código, ideas, f
 <div align="center">
 
 **⭐ Si este repositorio te ha sido útil, considera darle una estrella ⭐**
-
-[![GitHub stars](https://img.shields.io/github/stars/tu-usuario/herramientas-python.svg?style=social&label=Star)](https://github.com/tu-usuario/herramientas-python)
-[![GitHub forks](https://img.shields.io/github/forks/tu-usuario/herramientas-python.svg?style=social&label=Fork)](https://github.com/tu-usuario/herramientas-python/fork)
-
 </div>
