@@ -169,10 +169,10 @@ class SecurityApp(ctk.CTk):
             self.set_output_text("Introduce datos para decodificar.")
             return
         try:
-            decoded_data = base64.b64decode(data.encode("utf-8")).decode("utf-8")
+            decoded_data = base64.b64decode(data).decode("utf-8")
             self.set_output_text(decoded_data)
-        except (base64.binascii.Error, UnicodeDecodeError):
-            self.set_output_text("Error: Los datos no son un formato Base64 válido.")
+        except Exception as e:
+            self.set_output_text(f"Error de decodificación.")
 
     def check_password_strength(self):
         password = self.check_password_entry.get()
