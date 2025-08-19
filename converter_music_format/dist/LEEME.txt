@@ -1,0 +1,35 @@
+
+# Conversor de Audio Universal - Ejecutable
+
+## 🚀 Ejecución
+
+Simplemente ejecuta `ConversorAudioUniversal.exe` para iniciar la aplicación.
+
+## 📋 Características
+
+- Ejecutable independiente (no requiere Python instalado)
+- Incluye todas las dependencias necesarias
+- FFmpeg se descarga automáticamente si es necesario
+- Interfaz gráfica moderna con tema oscuro
+
+## 🔧 Solución de Problemas
+
+### El antivirus bloquea el ejecutable
+- Esto es normal para ejecutables creados con PyInstaller
+- Agrega una excepción en tu antivirus
+- El archivo es seguro, puedes verificar el código fuente
+
+### Error al iniciar
+- Ejecuta como administrador si es necesario
+- Verifica que tengas permisos de escritura en la carpeta
+- Revisa que no haya otro antivirus bloqueando la ejecución
+
+## 📁 Archivos Incluidos
+
+- `ConversorAudioUniversal.exe` - Aplicación principal
+- `README_MODULAR.md` - Documentación completa
+- `requirements.txt` - Lista de dependencias (referencia)
+
+---
+
+**¡Disfruta convirtiendo tus archivos de audio! 🎵**
