@@ -74,9 +74,9 @@ No requiere instalación adicional de Python o librerías.
         shutil.copy2(icon_path, dist_folder / "icono.ico")
         print("✅ Icono copiado para referencia")
     
-    print(f"\n🎉 Paquete de distribución creado exitosamente!")
+    print("\n🎉 Paquete de distribución creado exitosamente!")
     print(f"📁 Ubicación: {dist_folder}")
-    print(f"📊 Contenido:")
+    print("📊 Contenido:")
     for file in dist_folder.iterdir():
         size = file.stat().st_size / (1024*1024) if file.is_file() else 0
         print(f"   - {file.name} ({size:.1f} MB)" if size > 1 else f"   - {file.name}")

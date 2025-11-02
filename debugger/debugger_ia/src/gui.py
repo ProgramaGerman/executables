@@ -1,6 +1,5 @@
 import flet as ft
 import os
-from pathlib import Path
 import analizador
 
 class DebuggerApp:
@@ -30,7 +29,7 @@ class DebuggerApp:
             icon_path = os.path.join(os.path.dirname(__file__), "icons", "bug.ico")
             if os.path.exists(icon_path):
                 page.window_icon = icon_path
-        except Exception as e:
+        except Exception:
             # Silenciosamente continuar si no se puede cargar el icono
             pass
         

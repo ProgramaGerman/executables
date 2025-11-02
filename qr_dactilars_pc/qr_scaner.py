@@ -5,7 +5,6 @@ Tutorial paso a paso para generar códigos QR en Python - VERSIÓN MEJORADA
 """
 
 import qrcode
-from PIL import Image
 import os
 
 
@@ -83,7 +82,7 @@ def generar_qr_personalizado(
         color_fondo (str): Color de fondo
         tamaño (int): Tamaño de cada caja del QR
     """
-    print(f"🎨 Generando código QR personalizado...")
+    print("🎨 Generando código QR personalizado...")
 
     try:
         # Crear directorio si no existe

@@ -10,7 +10,6 @@ import subprocess
 import urllib.request
 import zipfile
 import shutil
-from pathlib import Path
 
 def install_pip_packages():
     """Instalar paquetes de Python necesarios"""

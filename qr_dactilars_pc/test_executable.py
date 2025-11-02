@@ -3,8 +3,6 @@ Script para verificar que el ejecutable compilado funciona correctamente
 """
 
 import os
-import subprocess
-import sys
 from pathlib import Path
 
 def test_executable():

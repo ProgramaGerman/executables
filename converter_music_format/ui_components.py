@@ -3,7 +3,6 @@ Componentes de interfaz de usuario para el Conversor de Audio Universal
 Contiene las clases para crear las pestañas y elementos de la GUI
 """
 
-import os
 import customtkinter as ctk
 from tkinter import filedialog
 

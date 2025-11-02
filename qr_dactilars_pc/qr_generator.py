@@ -4,7 +4,6 @@ Contiene todas las funciones de generación de QR del proyecto original
 """
 
 import qrcode
-from PIL import Image
 import os
 
 

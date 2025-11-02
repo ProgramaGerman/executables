@@ -3,7 +3,6 @@ Script para generar el archivo .spec de PyInstaller con configuración optimizad
 """
 
 import os
-import sys
 
 def create_spec_file():
     """Crea el archivo .spec para PyInstaller"""

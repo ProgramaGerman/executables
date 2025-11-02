@@ -1,0 +1,91 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Lock/solver artifacts
+uv.lock
+
+# Linters, type checkers, tests caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage*
+.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+*.egg
+.nox/
+.tox/
+
+# PyInstaller/Spec files (generated)
+*.spec
+
+# Logs and temps
+*.log
+*.tmp
+*.temp
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Data/models (adjust as needed)
+*.h5
+*.hdf5
+*.keras
+*.pt
+*.pth
+*.joblib
+*.pkl
+# If you keep datasets locally
+/data/
+/datasets/
+
+# Project-specific generated artifacts
+# Converter music format: ffmpeg bundle and binaries
+converter_music_format/ffmpeg/
+converter_music_format/*.exe
+converter_music_format/*.dll
+
+# QR app releases and generated output
+qr_dactilars_pc/QR_Generator_Release_*/
+qr_dactilars_pc/__pycache__/
+qr_generated/
+
+# Security tool caches and sensitive files
+security hash base64/__pycache__/
+contraseñas.txt
+
+# Executables and installers
+*.exe
+*.msi
+*.bat
+*.sh
+
+# Images generated (uncomment if you don't want to track images)
+# *.png
+# *.jpg
+# *.jpeg
+# *.webp
+
+# Local configs that shouldn't be versioned
+qr_app_config.json
+
+# Node/other caches (defensive)
+node_modules/

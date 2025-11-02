@@ -4,14 +4,11 @@ Maneja la detección, descarga e instalación de FFmpeg
 """
 
 import os
-import sys
 import threading
-import subprocess
 import urllib.request
 import zipfile
 import shutil
 import webbrowser
-from pathlib import Path
 import customtkinter as ctk
 from tkinter import messagebox
 

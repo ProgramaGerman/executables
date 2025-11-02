@@ -3,7 +3,6 @@
 import customtkinter as ctk
 from tkinter import messagebox
 import base64
-import os
 import re
 import pyperclip # Para copiar al portapapeles
 
@@ -171,8 +170,8 @@ class SecurityApp(ctk.CTk):
         try:
             decoded_data = base64.b64decode(data).decode("utf-8")
             self.set_output_text(decoded_data)
-        except Exception as e:
-            self.set_output_text(f"Error de decodificación.")
+        except Exception:
+            self.set_output_text("Error de decodificación.")
 
     def check_password_strength(self):
         password = self.check_password_entry.get()

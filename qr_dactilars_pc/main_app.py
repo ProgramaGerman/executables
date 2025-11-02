@@ -13,7 +13,6 @@ from PIL import Image, ImageTk
 from ui_components import MenuComponents, ResultComponents
 from forms import TextForm, URLForm, ContactForm, WiFiForm, CustomForm
 from file_manager import FileManager, ConfigManager
-from qr_generator import QRGenerator
 
 
 class QRGeneratorApp:
